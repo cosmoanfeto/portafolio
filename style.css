@@ -228,6 +228,9 @@ header {
     z-index: 1000;
     font-family: Ogg;
     overflow: hidden;
+    display: flex; /* Habilita Flexbox */
+    justify-content: center; /* Centra los elementos horizontalmente */
+    align-items: center; /* Centra los elementos verticalmente */
 }
 
 /* Estilos del contenedor principal */
@@ -631,7 +634,8 @@ section {
     font-size: var(--fs-xl);
     animation: marquee 100s linear infinite;
     padding-block:var(--space-small);text-transform: uppercase;
-    font-weight: var(--fw-regular)
+    font-weight: var(--fw-regular);
+    margin-top: 1vh;
 }
 
 .marquee-text span {
@@ -1126,7 +1130,8 @@ footer .container {
 }
 
 .footer_title h3 {
-    margin-bottom: 6rem
+    margin-bottom: 6rem;
+    margin-left: 3vw;
 }
 
 .contact-services h5 {
@@ -1203,12 +1208,60 @@ h1 {
     .article-header .row,.article_body .row {
         width:auto
     }
+    .slider, .slider-2 {
+        height: 50px; /* Reducir la altura del slider */
+    }
+    .slide {
+        height: 75px; /* Reducir la altura del slide */
+        width: 100px; /* Reducir el ancho del slide */
+    }
+    .slide img {
+        height: 5vh; /* Reducir la altura de la imagen */
+    }
+    footer .container {
+        display: flex;
+        flex-direction: row; /* Alinea los elementos horizontalmente */
+        justify-content: space-between; /* Distribuye el espacio de manera uniforme entre los elementos */
+        flex-wrap: wrap; /* Permite que los elementos se ajusten en varias líneas si es necesario */
+        padding: 1.5rem 0 3.5rem 0;
+    }
+    .black-theme .about_title { 
+        font-size: 3vw;
+    }
+    .about_title {
+        grid-column: 1/2;
+      
+    }
+    .bandera {
+        font-size: 4vw;;
+     }
 }
 
 @media only screen and (max-width: 600px) {
     .slide img {
         height:50vh;
         width: 100%;
+    }
+    .bandera {
+       font-size: 3vw;;
+    }
+
+    .marquee-text {
+        font-size: var(--fs-l); /* Cambia el tamaño de la fuente para pantallas pequeñas */
+    }
+
+    .marquee{
+        width: 100%;
+    }
+    .slider, .slider-2 {
+        height: 50px; /* Reducir la altura del slider */
+    }
+    .slide {
+        height: 75px; /* Reducir la altura del slide */
+        width: 100px; /* Reducir el ancho del slide */
+    }
+    .slide img {
+        height: 5vh; /* Reducir la altura de la imagen */
     }
 
     .img-cont {
@@ -1232,7 +1285,10 @@ h1 {
     }
 
     .bio_cover,.intro,.preload-holder,.prewrap {
-        height: 100svh;
+        height: 100vh;
+    }
+    .prewrap{
+
     }
 
     .count-down {
@@ -1293,9 +1349,18 @@ h1 {
     }
 
     .black-theme .about_title { 
-        font-size: 2vw;
+        
+        font-size: 5vw;
+        height: 15vh;
     }
-
+    .container .row{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .row .small_text{
+        visibility: hidden;
+    }
     .wrappar-title p {
         font-size: 2vh;
     }
@@ -1325,6 +1390,9 @@ h1 {
     }
 
     footer {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
         margin-top: 1rem;
     }
 
