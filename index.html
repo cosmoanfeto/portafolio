@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Felipe Torres - Ingeniero en Multimedia y Abogado</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollToPlugin.min.js"></script>
+    <script src="https://unpkg.com/split-type"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-F6ZX865P37"></script>
+
+</head>
+
+<body class="black-theme">
+    <!-- Preloader Start -->
+    <div id="preloader" class="preload-holder">
+        <div class="prewrap">
+            <div class="holder">
+                <div class="load-msg">Hello</div>
+                <div class="load-msg">Hola</div>
+                <div class="load-msg">Bonjour</div>
+            </div>
+            <div class="progress">
+                <span></span>
+            </div>
+            <div class="count-down">0%</div>
+        </div>
+    </div>
+    <!-- Preloader End -->
+    <!-- Cabecera -->
+    <header>
+        <div class="navbar-container">
+            <div class="logo">
+                <!-- Tu logo aquí -->
+                <img src="img/logo.png" alt="Tu Logo">
+            </div>
+            <div class="header-links">
+                <a href="#" class="bio-link" id="bio-link">Bio</a>
+                <a href="#" class="portfolio-link" id="portfolio-link">Portafolio</a>
+            </div>
+        </div>
+        <!-- Contenedor principal -->
+        <div class="container">
+            <div class="bio_wrappar">
+                <h1 class="bio_layout">
+                    <div class="o1">MODELANDO LA REALIDAD VIRTUAL </div>
+                    <div class="o2">con la solidez de la legislación.</div>
+                    <div class=" v-center">
+                        <div class="o2">— ¿Quién soy?</div>
+
+                        <div class="v-center2 marquee">
+                            <span class="rotate-center "><img src="img/star.svg" alt=""></span>
+                            <p class="parrafo uptotop1 ">Andrés Torres. Ingeniero en multimedia y Abogado. Mi pasión por la
+                                programación web y el modelado 3D se complementa con mi compromiso por una tecnología
+                                ética
+                                y regulada.</p>
+                        </div>
+
+                    </div>
+                    <div class="v-center">
+                        <div class="o4">
+                            <p>Amante de la Astronomía, el ciclismo y mindfulness </p>
+                        </div>
+                        <div class="three-background">
+                            <div id="three-container" style="width: 6vw; height: 4vh;"></div>
+                        </div>
+                        <div class="bandera">BOYACÁ <img src="img/banderaCO.png" alt="Bandera de Colombia"
+                                style="width: 6vw; height: auto;"></div>
+                    </div>
+                    <div class="wrappar-title">
+                        <p>Sígueme
+                            <small> ©</small>
+                        </p>
+                    </div>
+                    <div class="bio_social " aria-label="social links">
+                        <ul class="footer_social_links">
+                            <li>
+                                <a href="https://github.com/cosmoanfeto" target="_blank" rel="Github"
+                                    aria-label="github">
+                                    <img src="img/github.svg">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.tiktok.com/@cosmoanfeto" target="_blank" rel="TikTok"
+                                    aria-label="tik-tok">
+                                    <img src="img/tik-tok.svg">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.instagram.com/cosmo.anfeto/" target="_blank" rel="Instagram"
+                                    aria-label="instagram">
+                                    <img src="img/instagram.svg">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.linkedin.com/in/a-felipe-torres-c-63a19156" target="_blank"
+                                    rel="Linkedin" aria-label="linkedin">
+                                    <img src="img/linkedin.svg">
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mouse"></div>
+                    <div class="bio_copyrights mob-disable">©Cosmoanfeto</div>
+                </h1>
+
+            </div>
+        </div>
+    </header>
+    
+    <main>
+        <!--Seccion de Mi bio y para quien he trabajado-->
+        <section class="bio_about section" id="slide-0">
+            <div class="container">
+                <div class="row">
+                    <div class="small_text">Experiencia</div>
+                    <h3 class="about_title my-text uptotop">Programación Web, Publicidad, Modelado 3D y soporte.</h3>
+                    <p class="about_info quote">
+                        Como Estudiante de ultimo semestre de Ingenieria en Multimedia con más de 3 años de experiencia, he tenido la oportunidad de trabajar en una variedad de campos y para una diversidad de empresas, tanto públicas como
+                        privadas.<br><br>
+                        En el sector de la salud, colaboré con la E.S.E Unidad de Salud Nobsa, donde proporcioné soporte
+                        en la creación de piezas gráficas, captura y edición de fotografía y video con el fin de
+                        documentar las actividades de la entidad. Además, contribuí en la creación de su sitio web y en
+                        la apertura de sus redes sociales para la difusión de información al público.
+                        <br><br>En el sector del transporte de personas, trabajé con la empresa Flota Sugamuxy, ayudando en
+                        la publicidad mediante video, creación de piezas gráficas y su incursión en redes sociales.<br><br>
+                        En el sector comercial, colaboré con empresas como S.O.S Soluciones, que trabaja para
+                        establecimientos comerciales como Monaco (restaurante bar), SoulArt (especialistas en tatuajes)
+                        y Loop Bar.<br><br>
+                        Tuve la oportunidad de trabajar con la empresa BullTern México, especialistas en marketing, para
+                        la creación de campañas para diferentes empresas en México y Perú. Fui responsable del soporte
+                        de transmisión remota de reuniones, webinars y capacitaciones en estos dos países, así como del
+                        email marketing y la programación de los sitios web para cada campaña encargada a la
+                        empresa.<br><br>
+                        Adicionalmente, he realizado diferentes modelos 3D para la propuesta del proyecto de la Policía
+                        Nacional de Colombia sobre los Centros de Validación y Entrenamiento CEVAP.<br><br>
+                        Mi experiencia diversa y habilidades en multimedia me hacen un candidato fuerte y versátil para
+                        cualquier proyecto o posición en el campo de la ingeniería multimedia. Mi formación en Abogacía,
+                        me ha permitido complementar de manera integra toda resolución y planteamiento de problemas que
+                        cada proyecto ha requerido brindando soluciones éticas acopladas a las normas de la legislación
+                        colombiana.<br>
+
+                    </p>
+                    <div class="about_img">
+                        <div class="wrap uptotop">
+                            <div class="img"></div>
+                            <div class="img-forground"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="slider">
+                <div class="slide-track">
+                    <div class="slide">
+                        <img src="img/BULLTERN.png" alt="BullTern">
+                    </div>
+                    <div class="slide">
+                        <img src="img/esesaludnobsa.png" alt="SaludNobsa">
+                    </div>
+                    <div class="slide">
+                        <img src="img/flotasugamuxy.png" alt="Flotasugamuxy">
+                    </div>
+                    <div class="slide">
+                        <img src="img/soulArt.png" alt="SoulArt">
+                    </div>
+                    <div class="slide">
+                        <img src="img/MONACO2.png" alt="Monaco">
+                    </div>
+                    <div class="slide">
+                        <img src="img/SOS.png" alt="SOSsolutions">
+                    </div>
+                    <div class="slide">
+                        <img src="img/macondo-crossover-bar.png" alt="MacondoBar">
+                    </div>
+                    <div class="slide">
+                        <img src="img/loop.png" alt="loopBar">
+                    </div>
+                    <div class="slide">
+                        <img src="img/BULLTERN.png" alt="BullTern">
+                    </div>
+                    <div class="slide">
+                        <img src="img/esesaludnobsa.png" alt="SaludNobsa">
+                    </div>
+                    <div class="slide">
+                        <img src="img/flotasugamuxy.png" alt="Flotasugamuxy">
+                    </div>
+                    <div class="slide">
+                        <img src="img/soulArt.png" alt="SoulArt">
+                    </div>
+                    <div class="slide">
+                        <img src="img/MONACO2.png" alt="Monaco">
+                    </div>
+                    <div class="slide">
+                        <img src="img/SOS.png" alt="SOSsolutions">
+                    </div>
+                    <div class="slide">
+                        <img src="img/macondo-crossover-bar.png" alt="MacondoBar">
+                    </div>
+                    <div class="slide">
+                        <img src="img/loop.png" alt="loopBar">
+                    </div>
+                </div>
+            </div>
+            <div class="slider-2">
+                <div class="slide-track-2">
+                    <div class="slide">
+                        <img src="img/BULLTERN.png" alt="BullTern">
+                    </div>
+                    <div class="slide">
+                        <img src="img/esesaludnobsa.png" alt="SaludNobsa">
+                    </div>
+                    <div class="slide">
+                        <img src="img/flotasugamuxy.png" alt="Flotasugamuxy">
+                    </div>
+                    <div class="slide">
+                        <img src="img/soulArt.png" alt="SoulArt">
+                    </div>
+                    <div class="slide">
+                        <img src="img/MONACO2.png" alt="Monaco">
+                    </div>
+                    <div class="slide">
+                        <img src="img/SOS.png" alt="SOSsolutions">
+                    </div>
+                    <div class="slide">
+                        <img src="img/macondo-crossover-bar.png" alt="MacondoBar">
+                    </div>
+                    <div class="slide">
+                        <img src="img/loop.png" alt="loopBar">
+                    </div>
+                    <div class="slide">
+                        <img src="img/BULLTERN.png" alt="BullTern">
+                    </div>
+                    <div class="slide">
+                        <img src="img/esesaludnobsa.png" alt="SaludNobsa">
+                    </div>
+                    <div class="slide">
+                        <img src="img/flotasugamuxy.png" alt="Flotasugamuxy">
+                    </div>
+                    <div class="slide">
+                        <img src="img/soulArt.png" alt="SoulArt">
+                    </div>
+                    <div class="slide">
+                        <img src="img/MONACO2.png" alt="Monaco">
+                    </div>
+                    <div class="slide">
+                        <img src="img/SOS.png" alt="SOSsolutions">
+                    </div>
+                    <div class="slide">
+                        <img src="img/macondo-crossover-bar.png" alt="MacondoBar">
+                    </div>
+                    <div class="slide">
+                        <img src="img/loop.png" alt="loopBar">
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!--Seccion mi portafolio-->
+        <section class="new-portfolio-listing section" id="portfolio">
+            <div class="container">
+                <div class="row" id="panels-container">
+                    <h3 id="portfolio-content" class="my-text">Portfolio</h3>
+                    <ul class="quote port-list">
+                        <li class="showcase">
+                            <a class="showcase-link" href="#" rel="Hilos de Resiliencia - Multimedia Educativa" target="_top">
+                                <span class="project-number mob-disable">01</span>
+                                <h2 class="showcase-name">Hilos de Resiliencia</h2>
+                                <p class="showcase-role">Desarrollo en Unity, aplicación de metodología ADDIE</p> 
+                                <div class="arrow-right">
+                                    <img src="img/arrow-right.svg" alt="View Project">
+                                </div>
+                                <img class="showcase-photo bcg" src="galeria/hilos-de-resiliencia.jpg" alt="Multimedia Educativa">
+                            </a>
+                        </li>
+                        <li class="showcase">
+                            <a class="showcase-link" href="#" target="_top" rel="Videojuego Sokoban 3D">
+                                <span class="project-number mob-disable">02</span>
+                                <h2 class="showcase-name">Sokoban 3D Urban</h2>
+                                <p class="showcase-role">Desarrollo en Unity, Videojuego</p>
+                                <div class="arrow-right">
+                                    <img src="img/arrow-right.svg" alt="View Project">
+                                </div>
+                                <img class="showcase-photo bcg" src="galeria/Portada-sokoban3D.jpg" alt="Sokoban3D">
+                            </a>
+                        </li>
+                        <li class="showcase">
+                            <a class="showcase-link" href="#" target="_top" rel="Centros estrategico de valoracion probatoria ">
+                                <span class="project-number mob-disable">03</span>
+                                <h2 class="showcase-name">CEVAP</h2>
+                                <p class="showcase-role">Modelado 3D en Autodesk Maya, instalaciones.</p>
+                                <div class="arrow-right">
+                                    <img src="img/arrow-right.svg" alt="View Project">
+                                </div>
+                                <img class="showcase-photo bcg" src="galeria/CEVAP.jpg" alt="CEVAP">
+                            </a>
+                        </li>
+                        <li class="showcase">
+                            <a class="showcase-link" href="portafolio.html" target="_top" rel="COMIC 3 Mosqueteros">
+                                <span class="project-number mob-disable">04</span>
+                                <h2 class="showcase-name">LOS 3 MOSQUETEROS</h2>
+                                <p class="showcase-role">Render del comic en Autodesk maya</p>
+                                <div class="arrow-right">
+                                    <img src="img/arrow-right.svg" alt="View Project">
+                                </div>
+                                <img class="showcase-photo bcg" src="galeria/los-3-mosqueteros.jpg" alt="COMIC">
+                            </a>
+                        </li>
+                        <li class="showcase">
+                            <a class="showcase-link" href="#" target="_top" rel="Un Rover en Marte - Unity">
+                                <span class="project-number mob-disable">05</span>
+                                <h2 class="showcase-name">Un Rover en el cráter Jesero - Marte</h2>
+                                <p class="showcase-role">Simulación del rover curiosity en el cráter Jésero de Marte. Realizado en Unity.</p>
+                                <div class="arrow-right">
+                                    <img src="img/arrow-right.svg" alt="View Project">
+                                </div>
+                                <img class="showcase-photo bcg" src="galeria/UnRoverEnMarte.jpg" alt="Un Rover en el crater Jesero">
+                            </a>
+                        </li>
+                        <li class="showcase">
+                            <a class="showcase-link" href="#" target="_top" rel="Modelado Sonic the hedgehog - Autodesk Maya ">
+                                <span class="project-number mob-disable">06</span>
+                                <h2 class="showcase-name">Sonic the hedgehog</h2>
+                                <p class="showcase-role">Modelado de los personajes y vehículo del Videojuego Sonic the hedgehog en Autodesk Maya</p>
+                                <div class="arrow-right">
+                                    <img src="img/arrow-right.svg" alt="View Project">
+                                </div>
+                                <img class="showcase-photo bcg" src="galeria/personajesSonic.jpg" alt="Sonic the hedgehog">
+                            </a>
+                        </li>
+                        <li class="showcase">
+                            <a class="showcase-link" href="#" target="_top" rel="ilustraciones gráficas">
+                                <span class="project-number mob-disable">07</span>
+                                <h2 class="showcase-name">S.O.S. logistica y soluciones </h2>
+                                <p class="showcase-role">Creación de piezas gráficas para diferentes empresas. Adobe Illustrator.</p>
+                                <div class="arrow-right">
+                                    <img src="img/arrow-right.svg" alt="View Project">
+                                </div>
+                                <img class="showcase-photo bcg" src="galeria/mujer-empresaria.png" alt="Adobe illustrator">
+                            </a>
+                        </li>
+                        <li class="showcase">
+                            <a class="showcase-link" href="#" target="_top" rel="E.S.E. Unidad de Salud Nobsa">
+                                <span class="project-number mob-disable">08</span>
+                                <h2 class="showcase-name">Unidad de Salud Nobsa</h2>
+                                <p class="showcase-role">Creación de podcast, Video, piezas gráficas y sitio web para la E.S.E. Unidad de Salud Nobsa.</p>
+                                <div class="arrow-right">
+                                    <img src="img/arrow-right.svg" alt="View Project">
+                                </div>
+                                <img class="showcase-photo bcg" src="galeria/RUTA-DE-ATENCION-EN-SALUD-MENTAL.jpg" alt="Adobe illustrator">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <!--FINAL Seccion mi portafolio-->
+        <script src="javascript.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.23/bundled/lenis.min.js"></script>
+        <script rel="preload" src="pre-load.js" as="script"></script>
+        <script async>
+            // Smooth Scroll
+            const lenis = new Lenis({
+                lerp: 0.06,
+                // Lower values create a smoother scroll effect
+                smoothWheel: true // Enables smooth scrolling for mouse wheel events
+            })
+
+            lenis.on('scroll', console.log)
+
+            function raf(time) {
+                lenis.raf(time)
+                requestAnimationFrame(raf)
+            }
+            requestAnimationFrame(raf);
+
+            /// Lenis stop until loading is ready
+            $(document).ready(function () {
+                lenis.stop();
+
+                setTimeout(function () {
+                    lenis.start();
+                }, 2500);
+            });
+        </script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
+
+            gtag('config', 'G-F6ZX865P37');
+        </script>
+</body>
+
+</html>
