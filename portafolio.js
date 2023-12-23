@@ -1,3 +1,5 @@
+//PAGINAS DEL PORTAFOLIO
+
 // Cuando la página esté completamente cargada, establece la visibilidad de los elementos a "visible"
 document.querySelectorAll('.white-header, .sentence').forEach(function (element) {
   element.style.visibility = "visible"; // Hace visible el elemento

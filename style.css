@@ -1287,9 +1287,7 @@ h1 {
     .bio_cover,.intro,.preload-holder,.prewrap {
         height: 100vh;
     }
-    .prewrap{
-
-    }
+   
 
     .count-down {
         position: absolute;
@@ -1353,7 +1351,14 @@ h1 {
         font-size: 5vw;
         height: 15vh;
     }
-    .container .row{
+
+    .bio_about .row .about_title {
+        width: 80%; /* Esto hará que el título ocupe el 80% */
+        margin: 0 auto; /* Esto centrará el título  */
+        
+    }
+
+    .bio_about .container .row{
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
@@ -1396,8 +1401,15 @@ h1 {
         margin-top: 1rem;
     }
 
+    .footer_title{
+        width: 100%;;
+    }
+    .footer_information{
+        width: 100%;;
+    }
+
     .footer_title h3 {
-        font-size: calc(3rem + .390625vw)!important;
+        font-size: calc(2rem + .390625vw)!important;
         margin-bottom: 5vh!important;
         line-height: 110%!important;
     }

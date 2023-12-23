@@ -1,24 +1,67 @@
 document.addEventListener("DOMContentLoaded", function () {
     // Esperar a que el contenido del DOM se cargue completamente
+    // Esto verifica si la página se está viendo en un dispositivo que no sea de escritorio
+    if (window.innerWidth <= 768) {
+        // Selecciona el elemento con la clase 'row' dentro de '.bio_about .container'
+        var element = document.querySelector('.bio_about .container .row');
 
+        // Quita la clase 'row'
+        element.classList.remove('row');
+    }
     // Obtener el elemento de enlace de la biografía
-    const bioLink = document.getElementById("bio-link");
-
-    // Agregar un event listener al enlace de la biografía
-    bioLink.addEventListener("click", function (event) {
-        event.preventDefault();
-        console.log("Bio link clicked!");
-        // Agrega tu código personalizado aquí para el clic en el enlace de la biografía
-    });
-
-    // De manera similar, puedes agregar un event listener para el enlace del portafolio
+    //event listener para el enlace del portafolio
     const portfolioLink = document.getElementById("portfolio-link");
 
     portfolioLink.addEventListener("click", function (event) {
         event.preventDefault();
         console.log("Portfolio link clicked!");
-        // Agrega tu código personalizado aquí para el clic en el enlace del portafolio
+
+        // Obtener el elemento con el id 'portafolio'
+        const portfolioSection = document.getElementById("portafolio");
+
+        // Desplazar la vista al elemento
+        portfolioSection.scrollIntoView({ behavior: "smooth" });
     });
+    // Función para desplazarse a una sección
+    function scrollToSection(sectionId) {
+        gsap.to(window, { duration: 1, scrollTo: { y: `#${sectionId}`, offsetY: 70 } });
+    }
+
+    // Obtener los enlaces de Bio y Portafolio
+    const bioLink = document.getElementById('bio-link');
+    const portafolioLink = document.getElementById('portafolio-link');
+
+    // Agregar eventos de clic a los enlaces
+    bioLink.addEventListener('click', function (e) {
+        e.preventDefault();
+        scrollToSection('content'); // Desplazarse a la sección 'content'
+    });
+
+    portafolioLink.addEventListener('click', function (e) {
+        e.preventDefault();
+        scrollToSection('portafolio'); // Desplazarse a la sección 'portafolio'
+    });
+
+    // Verificar si la sección '.bio_about .container .row' es visible después de cargar la página
+    function checkRowVisibility() {
+        var element = document.querySelector('.bio_about .container .row');
+
+        // Verificar si el elemento es visible en la ventana
+        var elementRect = element.getBoundingClientRect();
+        var isVisible = elementRect.top < window.innerHeight && elementRect.bottom >= 0;
+
+        if (isVisible) {
+            // La sección es visible, eliminar la clase 'row'
+            element.classList.remove('row');
+            // Dejar de escuchar el evento scroll después de ejecutar la acción
+            window.removeEventListener('scroll', checkRowVisibility);
+        }
+    }
+
+    // Escuchar el evento scroll para verificar la visibilidad después de cargar la página
+    window.addEventListener('scroll', checkRowVisibility);
+
+
 
     // Animación de la sección de inicio
 
@@ -296,7 +339,7 @@ gsap.to('.uptotop', {
     duration: 2,
 });
 
-gsap.fromTo('.uptotop1', 
+gsap.fromTo('.uptotop1',
     {
         y: '100%', // Comienza desde abajo
         opacity: -10, // Comienza con opacidad 0
@@ -306,7 +349,7 @@ gsap.fromTo('.uptotop1',
         stagger: 1,
         y: 0, // Termina en la posición original
         opacity: 1, // Termina con opacidad 1
-        duration: 5,
+        duration: 3,
     }
 );
 

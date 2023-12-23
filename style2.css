@@ -117,6 +117,41 @@ h6 {
     width: 100%; /* El PDF se ajustará al 100% del ancho del contenedor */
     height: 60%; /* El PDF se ajustará al 100% de la altura del contenedor */
 }
+.pdf-container .video-container {
+    width: 100%; /* El PDF se ajustará al 100% del ancho del contenedor */
+    height: 60%; /* El PDF se ajustará al 100% de la altura del contenedor */
+}
+/*/////////////SECTION CARRUSELL//////////*/
+.title-resiliencia {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 5vh;
+    padding-top: 5vh;
+    
+}
+.alto{
+    line-height: 0.8; /* separacion lineas */
+}
+.carrusel{
+   display: flex;
+   width: 100%;
+   height: auto; 
+}
+.carrusel img{
+    width: 0px;
+    flex-grow:1;
+    object-fit: cover;
+    opacity: 0.8;
+    transition: .5s ease;
+}
+.carrusel img:hover{
+    cursor: crosshair;
+    width: 50vw;
+    opacity: 1;
+    filter: contrast(110%);
+}
+
 
  .decorated {
     border-top: 2px solid var(--clr-gold); /* Línea sólida en la parte superior */
@@ -576,9 +611,24 @@ a.download-resume {
     margin-bottom: var(--space-small);
 }
 
-/* Estilos para elementos de lista dentro de un contenedor con clase 'work-history' */
-.work-history ul li {
-    /* ... */
+/* Establecer estilos para los elementos de la lista en la sección "Objetivos a desarrollar" */
+.showcase_sub_info ul {
+    list-style: none; /* Elimina los indicadores de la lista */
+    padding-left: 1.5em; /* Añade un espacio a la izquierda para los índices personalizados */
+}
+
+.showcase_sub_info li {
+    margin-bottom: 0.5em; /* Añade un espacio entre los elementos de la lista */
+    color: black; /* Establece el color del texto a negro */
+}
+
+/* Establecer estilos para los índices de la lista */
+.showcase_sub_info li::before {
+    content: '\2022'; /* Utiliza un círculo como índice */
+    margin-right: 0.5em; /* Añade un espacio entre el índice y el texto del elemento de la lista */
+    font-size: 1.5em; /* Ajusta el tamaño del índice según sea necesario */
+    line-height: 0.8em; /* Ajusta el espaciado vertical del índice según sea necesario */
+    vertical-align: middle; /* Alinea verticalmente el índice con el texto del elemento de la lista */
 }
 
 /* Estilos para la fecha dentro de elementos de lista con clase 'work-date' */
@@ -586,31 +636,6 @@ a.download-resume {
     color: #bdbdbd;
     font-size: var(--fs-200);
     text-align: right;
-}
-
-/* Estilos para el elemento con clase 'loader' usado en pre-carga de la página */
-.loader {
-    /* ... */
-}
-
-/* Estilos para el contenedor con clase 'preload-holder' usado en pre-carga de la página */
-.preload-holder {
-    /* ... */
-}
-
-/* Estilos para el contenedor con clase 'prewrap' dentro de '.preload-holder' */
-.prewrap {
-    /* ... */
-}
-
-/* Estilos para el elemento con clase 'holder' dentro de '.prewrap' */
-.holder {
-    /* ... */
-}
-
-/* Estilos para el contador de tiempo en la pre-carga */
-.count-down {
-    /* ... */
 }
 
 /* Estilos para el mensaje de carga */
@@ -1590,7 +1615,15 @@ a.view-project:hover img {
 .showcase:hover .project-number {
     transform: translateX(-10px)
 }
-
+/* imagen con ID "carta" al ancho completo de la pantalla */
+.showcase_image #carta img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    margin: 0; /* Elimina cualquier margen */
+    padding: 0; /* Elimina cualquier relleno */
+}
+/* ---------DISPOSITIVOS --------*/
 @media (max-width:1023px) {
     .showcase-link {
         padding: 35px 0;
@@ -1636,6 +1669,10 @@ a.view-project:hover img {
     height: 400px;
     width: 100%
 }
+.showcase_image #carta img {
+    width: 100%;
+   
+}
 
 .showcase_cover h1 {
     grid-column-start: 1;
@@ -1672,6 +1709,8 @@ a.view-project:hover img {
     gap: 2%;
     grid-template-areas: 'empty rtitle rcol1 rcol2'
 }
+
+
 
 .grid-title {
     grid-area: rtitle
