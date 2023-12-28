@@ -1367,10 +1367,17 @@ ul.latest-articls li a:hover span {
 .small-sentence {
     overflow: hidden;
 }
+.pdfheight{
+    height: 100%;
+}
 
 .sentence {
     font-size:5vw;
     text-align: center;
+}
+
+.pdf-container .video-container .sentence  {
+    margin: 10vw;
 }
 
 /* Estilos adicionales para la clase 'small-sentence' */
