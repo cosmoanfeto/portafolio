@@ -151,7 +151,12 @@ h6 {
     opacity: 1;
     filter: contrast(110%);
 }
-
+.carrusel2 img:hover{
+    cursor: crosshair;
+    width: 50vw;
+    opacity: 1;
+    filter: contrast(80%) !important;
+}
 
  .decorated {
     border-top: 2px solid var(--clr-gold); /* Línea sólida en la parte superior */
@@ -1370,12 +1375,43 @@ ul.latest-articls li a:hover span {
 .pdfheight{
     height: 100%;
 }
+.linkout{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
 
 .sentence {
     font-size:5vw;
     text-align: center;
+    margin-top: 3vh;
 }
-
+@keyframes mover-robote {
+    0% { transform: translateX(0); }
+    50% { transform: translateX(100%); }
+    100% { transform: translateX(0); }
+  }
+  
+  @keyframes variar-color {
+    0%, 100% { color: #ccc; } /* Gris claro en los bordes */
+    25%, 75% { color: #666; } /* Gris medio a 1/4 y 3/4 del ancho de la pantalla */
+    50% { color: #000; } /* Negro en el centro */
+  }
+  
+  .anima-text {
+    display: inline-block;
+    animation: mover-robote 5s infinite;
+    font-size: 5vw;
+    text-transform: uppercase;
+  }
+  
+  .color-variant {
+    animation: variar-color 5s infinite;
+  }
+  
+  
 .pdf-container .video-container .sentence  {
     margin: 10vw;
 }
