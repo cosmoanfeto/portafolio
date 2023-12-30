@@ -31,6 +31,20 @@
 </head>
 
 <body class="white-theme">
+    <!-- Preloader Start -->
+    <div id="preloader" class="preload-holder">
+        <div class="prewrap">
+            <div class="holder">
+                <div class="load-msg">Hello</div>
+                <div class="load-msg">Hola</div>
+            </div>
+            <div class="progress">
+                <div class="count-down"><span>0%</span></div>
+            </div>
+
+        </div>
+    </div>
+    <!-- Preloader End -->
     <div id="content">
         <header class="white-header">
             <div class="container">
@@ -41,7 +55,7 @@
                         <li class="bio"><a aria-label="Hilos de Resiliencia" href="Hilos_de_Resiliencia.html"
                                 title="Hilos_de_Resiliencia">⟵
                                 Atras</a></li>
-                        <li class="blog"><a aria-label="next project" href="CEVAP.html" title="Next project">Siguiente
+                        <li class="blog"><a aria-label="next project" href="CEVAP.html" title="CEVAP">Siguiente
                                 ⟶</a>
                         </li>
                     </ul>
@@ -169,39 +183,6 @@
                     <img src="galeria/SokobanJugar.jpg" alt="">
                 </div>
             </section>
-            <section class="showcase_sub_info">
-                <div class="container">
-                    <div class="row">
-                        <div class="grid-title">
-                            <h4>Siguiente Proyecto:</h4>
-                        </div>
-                        <div class="grid-col1">
-                            <h3><a class="view-project" aria-label="View Project" href="CEVAP.html"
-                                    title="View Project">SOKOBAN3D <img src="img/arrow-right.svg"
-                                        alt="View Project"></a>
-                            </h3>
-                        </div>
-                        <div class="grid-col2">
-                            <p>Videojuego<br>Unity</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </main>
-        <footer class="footer">
-            <div class="marquee">
-                <div class="marquee-text">
-                    <span>
-                        Trabajemos Juntos · Trabajemos Juntos · Trabajemos Juntos · Trabajemos Juntos · Trabajemos
-                        Juntos · Trabajemos Juntos · Trabajemos Juntos · Trabajemos Juntos · Trabajemos Juntos ·
-                    </span>
-                    <span>
-                        Trabajemos Juntos · Trabajemos Juntos · Trabajemos Juntos · Trabajemos Juntos · Trabajemos
-                        Juntos · Trabajemos Juntos · Trabajemos Juntos · Trabajemos Juntos · Trabajemos Juntos ·
-                    </span>
-                </div>
-            </div>
-
             <div class="pdf-container decorated">
                 <div class=" title-resiliencia">
                     <h3 class="alto">ESCENAS <br> <span class="small-text">Videojuego</span><br> <span
@@ -221,8 +202,38 @@
 
                 </section>
             </div>
-
-
+            <section class="showcase_sub_info">
+                <div class="container">
+                    <div class="row">
+                        <div class="grid-title">
+                            <h4>Siguiente Proyecto:</h4>
+                        </div>
+                        <div class="grid-col1">
+                            <h3><a class="view-project" aria-label="View Project" href="CEVAP.html"
+                                    title="Siguiente">C.E.V.A.P. <img src="img/arrow-right.svg"
+                                        alt="View Project"></a>
+                            </h3>
+                        </div>
+                        <div class="grid-col2">
+                            <p>modelado 3D<br>MAYA</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer class="footer">
+            <div class="marquee">
+                <div class="marquee-text">
+                    <span>
+                        Trabajemos Juntos · Trabajemos Juntos · Trabajemos Juntos · Trabajemos Juntos · Trabajemos
+                        Juntos · Trabajemos Juntos · Trabajemos Juntos · Trabajemos Juntos · Trabajemos Juntos ·
+                    </span>
+                    <span>
+                        Trabajemos Juntos · Trabajemos Juntos · Trabajemos Juntos · Trabajemos Juntos · Trabajemos
+                        Juntos · Trabajemos Juntos · Trabajemos Juntos · Trabajemos Juntos · Trabajemos Juntos ·
+                    </span>
+                </div>
+            </div>
 
             <div class="container foot">
                 <div class="footer_title">
@@ -291,6 +302,44 @@
         </footer>
     </div>
     <script rel="preconnect" src="portafolio.js"></script>
+    <script src="javascript.js"></script>
+    
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.23/bundled/lenis.min.js"></script>
+    <script rel="preload" src="pre-load.js" as="script"></script>
+    <script async>
+        // Smooth Scroll
+        const lenis = new Lenis({
+            lerp: 0.06,
+            // Lower values create a smoother scroll effect
+            smoothWheel: true // Enables smooth scrolling for mouse wheel events
+        })
+
+        lenis.on('scroll', console.log)
+
+        function raf(time) {
+            lenis.raf(time)
+            requestAnimationFrame(raf)
+        }
+        requestAnimationFrame(raf);
+
+        /// Lenis stop until loading is ready
+        $(document).ready(function () {
+            lenis.stop();
+
+            setTimeout(function () {
+                lenis.start();
+            }, 2500);
+        });
+    </script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-F6ZX865P37');
+    </script>
 </body>
 
 </html>

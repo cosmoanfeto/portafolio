@@ -23,6 +23,32 @@ body {
     --clr-gold: #D5CDC4;
 }
 
+/*foto click*/
+.click-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    z-index: 3; /* Asegura que el texto esté por encima de las imágenes */
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
 /* Usa Cormorant Garamond para títulos y secciones específicas */
 h1,
 .wrappar-title,
