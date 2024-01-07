@@ -1,0 +1,95 @@
+
+/* Estilos modernos para los botones */
+button {
+    display: inline-block;
+    padding: 10px;
+    margin: 0 5px;
+    font-size: 0.5rem;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3); /* Agrega sombra */
+    background-color: #000000;
+    color: #3d3c39;
+}
+
+button:hover {
+    background-color: #D5CDC4; /* Cambia a tu color preferido */
+    color: #000000; /* Cambia a tu color preferido */
+    transform: scale(1.1); /* Agrega zoom */
+}
+
+
+
+.prev-page,
+.next-page {
+    background-color: #000000; /* Cambia a tu color preferido */
+    color: #fbf5ec; /* Cambia a tu color preferido */
+}
+
+.current-page {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+
+
+
+
+/* Estilos para el visor de libro */
+.book-viewer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+}
+
+.book-container {
+    overflow: hidden;
+    position: relative;
+    width: 60%;
+    max-width: 600px; /* Ancho máximo para asegurar la legibilidad y experiencia de lectura */
+    height: 60vh; /* Altura fija de las páginas */
+}
+
+.book {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    height: 100%; /* Ajuste para asegurar que ocupe toda la altura del contenedor */
+}
+
+.page {
+    flex: 0 0 100%;
+    box-sizing: border-box;
+    text-align: center; /* Alinea la imagen al centro */
+}
+
+img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Ajusta la imagen para que quepa en el contenedor sin distorsionarse */
+    display: block;
+    margin: 0 auto; /* Centra la imagen horizontalmente */
+}
+
+.pagination {
+    display: flex;
+    width: 80%;
+    justify-content: space-evenly;
+    margin-top: 10px;
+}
+
+
+/* Estilos responsive */
+@media (max-width: 768px) {
+    .book-container {
+        width: 80%;
+    }
+}

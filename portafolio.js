@@ -98,6 +98,9 @@ tl.fromTo(img, {
 });
 });
 
+
+
+
 // Animación del pie de página
 gsap.set(".foot", { y: 100 }); // Establece la posición inicial del pie de página
 gsap.from('.foot', {

@@ -33,20 +33,7 @@
 </head>
 
 <body class="white-theme">
-    <!-- Preloader Start -->
-    <div id="preloader" class="preload-holder">
-        <div class="prewrap">
-            <div class="holder">
-                <div class="load-msg">Hello</div>
-                <div class="load-msg">Hola</div>
-            </div>
-            <div class="progress">
-                <div class="count-down"><span>0%</span></div>
-            </div>
-
-        </div>
-    </div>
-    <!-- Preloader End -->
+    
     <div id="content">
         <header class="white-header">
             <div class="container">
@@ -218,7 +205,7 @@
             </section>
         </main>
         <footer class="footer">
-            <div class="marquee">
+            <!-- <div class="marquee">
                 <div class="marquee-text">
                     <span>
                         Trabajemos Juntos · Trabajemos Juntos · Trabajemos Juntos · Trabajemos Juntos · Trabajemos
@@ -229,7 +216,7 @@
                         Juntos · Trabajemos Juntos · Trabajemos Juntos · Trabajemos Juntos · Trabajemos Juntos ·
                     </span>
                 </div>
-            </div>
+            </div> -->
 
     </div>
 
@@ -338,6 +325,28 @@
         gtag('js', new Date());
 
         gtag('config', 'G-F6ZX865P37');
+    </script>
+    <script>
+        // Muestra el mensaje de carga al inicio
+        var loadingMessage = document.createElement("div");
+        loadingMessage.innerHTML = "Cargando Portafolio";
+        loadingMessage.style.position = "fixed";
+        loadingMessage.style.bottom = "10px";
+        loadingMessage.style.right = "10px";
+        loadingMessage.style.padding = "10px";
+        loadingMessage.style.background = "#4CAF50";
+        loadingMessage.style.color = "white";
+        loadingMessage.style.borderRadius = "5px";
+        document.body.appendChild(loadingMessage);
+
+        // Oculta el mensaje de carga cuando la página se haya cargado completamente
+        document.addEventListener("DOMContentLoaded", function () {
+            loadingMessage.innerHTML = "La página ha cargado correctamente.";
+
+            setTimeout(function () {
+                loadingMessage.style.display = "none";
+            }, 3000); // Oculta el mensaje después de 3s
+        });
     </script>
 </body>
 
