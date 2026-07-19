@@ -160,9 +160,12 @@
 
   const readPreference = () => {
     try {
-      return window.localStorage.getItem("portfolioMusic") === "on";
+      const storedPreference = window.localStorage.getItem("portfolioMusic");
+      // La música queda activada por defecto. Solo se desactiva si el visitante
+      // la apagó expresamente en una visita anterior.
+      return storedPreference !== "off";
     } catch {
-      return false;
+      return true;
     }
   };
 
@@ -183,7 +186,7 @@
   };
 
   if (backgroundMusic) {
-    backgroundMusic.volume = 0.28;
+    backgroundMusic.volume = 0.60;
     backgroundMusic.load();
   }
   if (clickSound) {
@@ -193,17 +196,21 @@
 
   let musicEnabled = readPreference();
   let pausedByVisibility = false;
-  setMusicUI(false, musicEnabled ? "Reanudar" : "Activar");
+  setMusicUI(false, musicEnabled ? "Iniciando…" : "Activar");
 
   const playMusic = async () => {
-    if (!backgroundMusic || !musicToggle) return;
+    if (!backgroundMusic || !musicToggle) return false;
     try {
       await backgroundMusic.play();
       musicEnabled = true;
       savePreference(true);
       setMusicUI(true);
+      return true;
     } catch {
-      setMusicUI(false, "No disponible");
+      // En móviles y algunos navegadores el autoplay con sonido se bloquea
+      // hasta que el visitante toca o pulsa una tecla por primera vez.
+      setMusicUI(false, musicEnabled ? "Toca para iniciar" : "Activar");
+      return false;
     }
   };
 
@@ -220,6 +227,20 @@
     if (backgroundMusic.paused) playMusic();
     else pauseMusic();
   });
+
+  // Intenta reproducirla desde la carga. Si el navegador bloquea el autoplay,
+  // se inicia automáticamente con la primera interacción del visitante.
+  if (musicEnabled) playMusic();
+
+  const unlockMusicOnFirstInteraction = (event) => {
+    if (!musicEnabled || !backgroundMusic || !backgroundMusic.paused) return;
+    const target = event.target;
+    if (target instanceof Element && target.closest("#music-toggle")) return;
+    playMusic();
+  };
+
+  window.addEventListener("pointerdown", unlockMusicOnFirstInteraction, { capture: true, once: true });
+  window.addEventListener("keydown", unlockMusicOnFirstInteraction, { capture: true, once: true });
 
   backgroundMusic?.addEventListener("error", () => {
     if (!musicToggle) return;
