@@ -11,24 +11,64 @@
   const progressBar = document.querySelector(".scroll-progress span");
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  const setMenuState = (isOpen) => {
-    if (!nav || !navToggle) return;
+  let menuOpen = false;
+  let lockedScrollY = 0;
+
+  const lockPageScroll = () => {
+    lockedScrollY = window.scrollY || window.pageYOffset;
+    body.style.position = "fixed";
+    body.style.top = `-${lockedScrollY}px`;
+    body.style.right = "0";
+    body.style.left = "0";
+    body.style.width = "100%";
+  };
+
+  const unlockPageScroll = () => {
+    const restoreY = lockedScrollY;
+    body.style.position = "";
+    body.style.top = "";
+    body.style.right = "";
+    body.style.left = "";
+    body.style.width = "";
+    window.scrollTo({ top: restoreY, left: 0, behavior: "auto" });
+  };
+
+  const setMenuState = (isOpen, restoreFocus = true) => {
+    if (!nav || !navToggle || isOpen === menuOpen) return;
+
+    menuOpen = isOpen;
     nav.classList.toggle("is-open", isOpen);
     navToggle.setAttribute("aria-expanded", String(isOpen));
     navToggle.setAttribute("aria-label", isOpen ? "Cerrar menú" : "Abrir menú");
     body.classList.toggle("nav-open", isOpen);
+
+    if (isOpen) {
+      lockPageScroll();
+      window.requestAnimationFrame(() => navLinks[0]?.focus({ preventScroll: true }));
+    } else {
+      unlockPageScroll();
+      if (restoreFocus) navToggle.focus({ preventScroll: true });
+    }
   };
 
   navToggle?.addEventListener("click", () => {
     setMenuState(navToggle.getAttribute("aria-expanded") !== "true");
   });
 
-  navLinks.forEach((link) => link.addEventListener("click", () => setMenuState(false)));
+  navLinks.forEach((link) => {
+    link.addEventListener("click", () => setMenuState(false, false));
+  });
+
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") setMenuState(false);
   });
+
   window.addEventListener("resize", () => {
-    if (window.innerWidth > 980) setMenuState(false);
+    if (window.innerWidth > 980 && menuOpen) setMenuState(false, false);
+  });
+
+  window.addEventListener("pageshow", () => {
+    if (menuOpen) setMenuState(false, false);
   });
 
   let ticking = false;
@@ -110,6 +150,119 @@
       });
     });
   }
+
+  /* Audio: la música inicia únicamente después de pulsar el botón,
+     porque los navegadores bloquean el autoplay con sonido. */
+  const musicToggle = document.getElementById("music-toggle");
+  const musicStatus = document.getElementById("music-status");
+  const backgroundMusic = document.getElementById("background-music");
+  const clickSound = document.getElementById("click-sound");
+
+  const readPreference = () => {
+    try {
+      return window.localStorage.getItem("portfolioMusic") === "on";
+    } catch {
+      return false;
+    }
+  };
+
+  const savePreference = (enabled) => {
+    try {
+      window.localStorage.setItem("portfolioMusic", enabled ? "on" : "off");
+    } catch {
+      // El sitio sigue funcionando aunque el navegador bloquee localStorage.
+    }
+  };
+
+  const setMusicUI = (isPlaying, statusText = isPlaying ? "Sonando" : "Activar") => {
+    if (!musicToggle || !musicStatus) return;
+    musicToggle.classList.toggle("is-playing", isPlaying);
+    musicToggle.setAttribute("aria-pressed", String(isPlaying));
+    musicToggle.setAttribute("aria-label", isPlaying ? "Desactivar música de fondo" : "Activar música de fondo");
+    musicStatus.textContent = statusText;
+  };
+
+  if (backgroundMusic) {
+    backgroundMusic.volume = 0.28;
+    backgroundMusic.load();
+  }
+  if (clickSound) {
+    clickSound.volume = 0.32;
+    clickSound.load();
+  }
+
+  let musicEnabled = readPreference();
+  let pausedByVisibility = false;
+  setMusicUI(false, musicEnabled ? "Reanudar" : "Activar");
+
+  const playMusic = async () => {
+    if (!backgroundMusic || !musicToggle) return;
+    try {
+      await backgroundMusic.play();
+      musicEnabled = true;
+      savePreference(true);
+      setMusicUI(true);
+    } catch {
+      setMusicUI(false, "No disponible");
+    }
+  };
+
+  const pauseMusic = () => {
+    if (!backgroundMusic) return;
+    backgroundMusic.pause();
+    musicEnabled = false;
+    savePreference(false);
+    setMusicUI(false);
+  };
+
+  musicToggle?.addEventListener("click", () => {
+    if (!backgroundMusic) return;
+    if (backgroundMusic.paused) playMusic();
+    else pauseMusic();
+  });
+
+  backgroundMusic?.addEventListener("error", () => {
+    if (!musicToggle) return;
+    musicToggle.disabled = true;
+    setMusicUI(false, "Audio pendiente");
+  });
+
+  const playClickSound = () => {
+    if (!clickSound) return;
+    try {
+      clickSound.currentTime = 0;
+      const playAttempt = clickSound.play();
+      if (playAttempt && typeof playAttempt.catch === "function") playAttempt.catch(() => {});
+    } catch {
+      // No interrumpe la navegación si el formato no es compatible.
+    }
+  };
+
+  document.addEventListener(
+    "click",
+    (event) => {
+      const interactive = event.target.closest("a, button, [role='button'], input[type='button'], input[type='submit']");
+      if (!interactive || interactive.matches(":disabled") || interactive.getAttribute("aria-disabled") === "true") return;
+      playClickSound();
+    },
+    { capture: true }
+  );
+
+  document.addEventListener("visibilitychange", () => {
+    if (!backgroundMusic) return;
+
+    if (document.hidden && !backgroundMusic.paused) {
+      pausedByVisibility = true;
+      backgroundMusic.pause();
+      setMusicUI(false, "En pausa");
+      return;
+    }
+
+    if (!document.hidden && pausedByVisibility && musicEnabled) {
+      pausedByVisibility = false;
+      playMusic();
+    }
+  });
 
   const currentYear = document.getElementById("current-year");
   if (currentYear) currentYear.textContent = String(new Date().getFullYear());

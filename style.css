@@ -40,6 +40,29 @@ body {
 }
 
 body.nav-open { overflow: hidden; }
+
+/* Al abrir el menú se elimina el backdrop-filter del encabezado.
+   En móviles, ese filtro puede convertir al header en contenedor del menú fixed
+   y recortarlo a la altura del encabezado después de hacer scroll. */
+body.nav-open .site-header {
+  height: 100vh;
+  height: 100dvh;
+  border-color: transparent;
+  background: #07090f;
+  overflow: visible;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+body.nav-open .header-inner {
+  height: var(--header-height);
+}
+
+body.nav-open .audio-control {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(12px);
+}
 img { display: block; max-width: 100%; }
 a { color: inherit; }
 button, a { -webkit-tap-highlight-color: transparent; }
@@ -429,6 +452,114 @@ button { font: inherit; }
 .footer-inner p { margin: 0; }
 .footer-inner a { color: var(--text); text-underline-offset: 4px; }
 
+
+
+/* Control flotante de música */
+.audio-control {
+  position: fixed;
+  z-index: 90;
+  right: max(18px, env(safe-area-inset-right));
+  bottom: max(18px, env(safe-area-inset-bottom));
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.music-toggle {
+  min-height: 54px;
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  padding: 9px 13px 9px 10px;
+  border: 1px solid rgba(246, 241, 235, 0.18);
+  border-radius: 999px;
+  color: var(--text);
+  background: rgba(13, 17, 27, 0.84);
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 14px 42px rgba(0, 0, 0, 0.30);
+  cursor: pointer;
+  transition: transform 180ms ease, border-color 180ms ease, background-color 180ms ease;
+}
+
+.music-toggle:hover,
+.music-toggle:focus-visible {
+  transform: translateY(-2px);
+  border-color: rgba(120, 217, 242, 0.52);
+  background: rgba(20, 25, 38, 0.94);
+}
+
+.music-toggle:disabled {
+  opacity: 0.62;
+  cursor: not-allowed;
+}
+
+.music-icon {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--bg);
+  background: linear-gradient(135deg, var(--cyan), var(--accent-strong));
+}
+
+.music-icon svg {
+  width: 19px;
+  height: 19px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.music-icon-on { display: none; }
+.music-toggle.is-playing .music-icon-on { display: block; }
+.music-toggle.is-playing .music-icon-off { display: none; }
+
+.music-copy {
+  display: grid;
+  min-width: 56px;
+  text-align: left;
+  line-height: 1.1;
+}
+
+.music-copy strong {
+  font-size: 0.76rem;
+  letter-spacing: 0.04em;
+}
+
+.music-copy small {
+  margin-top: 4px;
+  color: var(--text-soft);
+  font-size: 0.68rem;
+}
+
+.music-equalizer {
+  width: 18px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+.music-equalizer i {
+  width: 2px;
+  height: 5px;
+  border-radius: 99px;
+  background: var(--cyan);
+  transform-origin: center;
+}
+
+.music-toggle.is-playing .music-equalizer i { animation: equalizer 760ms ease-in-out infinite alternate; }
+.music-toggle.is-playing .music-equalizer i:nth-child(2) { animation-delay: -260ms; }
+.music-toggle.is-playing .music-equalizer i:nth-child(3) { animation-delay: -510ms; }
+
+@keyframes equalizer {
+  from { transform: scaleY(0.6); }
+  to { transform: scaleY(3.1); }
+}
+
 /* Se oculta solo cuando JavaScript ya confirmó que las animaciones están disponibles. */
 .motion-ready [data-reveal] {
   opacity: 0;
@@ -454,20 +585,27 @@ button { font: inherit; }
   .container { width: min(calc(100% - 30px), var(--container)); }
   .nav-toggle { display: block; position: relative; z-index: 102; }
   .site-nav {
-    position: fixed;
+    position: absolute;
     z-index: 101;
     inset: 0;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    min-height: 100vh;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: center;
-    gap: 14px;
-    padding: 90px max(28px,8vw) 44px;
-    background: rgba(7,9,15,.98);
-    transform: translateX(100%);
+    justify-content: flex-start;
+    gap: clamp(12px, 2.4vh, 20px);
+    padding: max(112px, calc(env(safe-area-inset-top) + 92px)) max(28px,8vw) max(42px, calc(env(safe-area-inset-bottom) + 28px));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    background: #07090f;
+    transform: translate3d(100%, 0, 0);
     visibility: hidden;
     transition: transform 260ms cubic-bezier(.2,.7,.2,1), visibility 260ms;
   }
-  .site-nav.is-open { transform: translateX(0); visibility: visible; }
+  .site-nav.is-open { transform: translate3d(0,0,0); visibility: visible; }
   .site-nav a { font-family: "Cormorant Garamond", Georgia, serif; font-size: clamp(2.3rem,10vw,4.8rem); font-weight: 600; line-height: 1; }
   .hero-grid { grid-template-columns: 1fr; align-content: center; gap: 42px; padding-block: 40px; }
   .hero-card { max-width: 660px; }
@@ -503,7 +641,14 @@ button { font: inherit; }
   .tool-marquee::before, .tool-marquee::after { width: 40px; }
   .project-body p { min-height: 0; }
   .footer-inner { min-height: 124px; flex-direction: column; align-items: flex-start; justify-content: center; }
+  .audio-control {
+    right: max(12px, env(safe-area-inset-right));
+    bottom: max(12px, env(safe-area-inset-bottom));
+  }
+  .music-toggle { min-height: 50px; padding: 7px 10px 7px 7px; }
+  .music-icon { width: 34px; height: 34px; }
 }
+
 
 @media (max-width: 430px) {
   .container { width: min(calc(100% - 24px), var(--container)); }
@@ -511,7 +656,10 @@ button { font: inherit; }
   .location-badge { align-items: flex-start; }
   .profile-content h2, .section-heading h2, .contact-section h2 { font-size: clamp(2.55rem,13vw,4rem); }
   .portrait-hint { display: none; }
+  .music-copy { display: none; }
+  .music-toggle { gap: 7px; }
 }
+
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
